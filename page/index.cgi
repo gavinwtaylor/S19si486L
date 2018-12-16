@@ -10,7 +10,7 @@ import csv
 calendar=[]
 activeAss=[]
 today=datetime.now()
-today=datetime(2019,1,12,hour=7)
+#today=datetime(2019,1,12,hour=7)
 
 def date2str(date):
   return date.strftime("%a, %b ")+str(date.day)

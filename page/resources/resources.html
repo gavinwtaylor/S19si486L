@@ -12,10 +12,11 @@
 </head>
 <body>
 <div class="navbar">
-  <b><a href="https://www.usna.edu/Users/cs/taylor/courses/si486l">SI486L: Machine Learning</a></b>
+  <b><a href="https://www.usna.edu/Users/cs/taylor/courses/si486l">SI486L:
+      Machine Learning and Data Science</a></b>
   <a href="https://www.usna.edu/Users/cs/taylor/">Dr. Taylor</a>
   <a
-    href="https://www.usna.edu/Users/cs/taylor/courses/si486l/policy.pdf">Policy</a>
+    href="https://www.usna.edu/Users/cs/taylor/courses/si486l/course_policy.pdf">Policy</a>
   <a
     href="https://www.usna.edu/Users/cs/taylor/courses/si486l/resources/resources.html">Resources</a>
 </div>
@@ -28,5 +29,17 @@
 <li>(ESL) <a href="ESL.pdf">Hastie, Tibshirani, and Friedman. <strong>The Elements of Statistical Learning</strong></a>. (generously provided for free by the authors)</li>
 <li>(MML) <a href="https://mml-book.github.io/">Deisenroth, Faisal, and Ong. <strong>Mathematics for Machine Learning</strong></a>. (generously provided for free by the authors)</li>
 </ul>
+<h3 id="software-libraries">Software Libraries</h3>
+<ul>
+<li><a href="http://www.numpy.org/">Numpy</a></li>
+<li><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html">Matplotlib</a></li>
+<li><a href="https://www.h5py.org/">HDF5 for Python</a></li>
+</ul>
+<h3 id="setting-up-a-python-virtual-environment">Setting up a Python Virtual Environment</h3>
+<p>Virtual environments are useful for setting up your Python libraries without impacting the whole system's Python installation (or when you don't have root access). To build an environment for Python 3 called <code>mypy3</code>, and install some libraries, run the following commands:</p>
+<pre><code>python3 -m virtualenv mypy3
+source mypy3/bin/activate
+pip install numpy scipy h5py matplotlib</code></pre>
+<p>While the virtual environment is active, all calls to python, pip, etc. will be handled by the installation set up for that virtual environment. To leave it, run <code>deactivate</code>. You'll probably want an alias set up to activate your favorite virtual environment.</p>
 </body>
 </html>
