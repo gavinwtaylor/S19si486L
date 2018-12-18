@@ -153,7 +153,7 @@ def buildCalendar(meetings,holidays,others):
   with open('cal.csv') as csvfile:
     read=csv.DictReader(csvfile,delimiter='\t')
     for row in read:
-      if row['AssDue'] is not "":
+      if row['AssDue'] is not "" and row['AssDue'] is not None:
         m=int(row['AssDue'].split()[0])
         d=int(row['AssDue'].split()[1])
         row['AssDue']=datetime(meetings[0].year,m,d,hour=6)
