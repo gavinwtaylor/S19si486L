@@ -10,7 +10,7 @@ def drawIt(data,centroids,assign):
   for row in range(len(data)):
     plt.plot(data[row,0],data[row,1],'.',color='C'+str(int(assign[row])))
   for c in centroids:
-    plt.plot(c[0],c[1],'o')
+    plt.plot(c[0],c[1],'o',markeredgecolor='black')
   plt.show()
 
 def kmeans(data,k):
@@ -20,9 +20,7 @@ def kmeans(data,k):
   count=0
   assign=np.zeros(n,dtype=int)
   while run:
-    print(centroids)
     run=False
-    print(count)
     count=count+1
     for i in range(n):
       mindist=float('inf')
@@ -35,7 +33,6 @@ def kmeans(data,k):
       if minind!=assign[i]:
         assign[i]=minind
         run=True
-    drawIt(data,centroids,assign)
     for c in range(k):
       centroids[c,:]=np.mean(data[np.where(assign==c)[0],:],0)
   totalDist=0
@@ -49,12 +46,16 @@ def kmeans(data,k):
 
 parser=argparse.ArgumentParser()
 parser.add_argument("filename")
-parser.add_argument("k",type=int)
+parser.add_argument("maxK",type=int)
 args=parser.parse_args()
 filename=args.filename
 
 with h5py.File(filename,'r') as f:
   data=f['data'][:]
 
-centroids,avgDist,assign=kmeans(data,args.k)
-drawIt(data,centroids,assign)
+dists=[]
+for i in range(1,args.maxK):
+  centroids,avgDist,assign=kmeans(data,i)
+  dists.append(avgDist)
+plt.plot(dists)
+plt.show()

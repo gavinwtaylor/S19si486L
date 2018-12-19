@@ -7,5 +7,9 @@ belongs to, and the average distance from every data point to its centroid.
 
 Plot the average distance as a function of $k$.
 
-Run this on the MNIST data set.  For an informed choice of $k$, display the
+Run this on the 10.h5 data set.  For an informed choice of $k$, display the
 $k$ centroids.
+
+##Extra Credit
+
+Implement [k-means++](https://en.wikipedia.org/wiki/K-means%2B%2B).

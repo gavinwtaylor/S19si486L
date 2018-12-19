@@ -31,14 +31,16 @@
 </ul>
 <h3 id="software-libraries">Software Libraries</h3>
 <ul>
-<li><a href="http://www.numpy.org/">Numpy</a></li>
-<li><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html">Matplotlib</a></li>
-<li><a href="https://www.h5py.org/">HDF5 for Python</a></li>
+<li><a href="http://www.numpy.org/">Numpy</a>: linear algebra</li>
+<li><a href="http://scipy.github.io/devdocs/">Scipy</a>: algorithms and data structures for scientific computing</li>
+<li><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html">Matplotlib</a>: for making plots and graphs</li>
+<li><a href="https://www.h5py.org/">HDF5 for Python</a>: high-density data storage format</li>
+<li><a href="https://docs.python.org/3/howto/argparse.html">argparse</a>: handles command-line arguments cleaner than sys.argv</li>
 </ul>
 <h3 id="setting-up-a-python-virtual-environment">Setting up a Python Virtual Environment</h3>
-<p>Virtual environments are useful for setting up your Python libraries without impacting the whole system's Python installation (or when you don't have root access). To build an environment for Python 3 called <code>mypy3</code>, and install some libraries, run the following commands:</p>
-<pre><code>python3 -m virtualenv mypy3
-source mypy3/bin/activate
+<p>Virtual environments are useful for setting up your Python libraries without impacting the whole system's Python installation (or when you don't have root access). To build an environment for Python 3 and install some libraries, run the following commands from the home directory:</p>
+<pre><code>python3 -m virtualenv &lt;someName&gt;
+source &lt;someName&gt;/bin/activate
 pip install numpy scipy h5py matplotlib</code></pre>
 <p>While the virtual environment is active, all calls to python, pip, etc. will be handled by the installation set up for that virtual environment. To leave it, run <code>deactivate</code>. You'll probably want an alias set up to activate your favorite virtual environment.</p>
 </body>

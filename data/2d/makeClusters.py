@@ -17,6 +17,13 @@ def unisonShuffle(a,b):
   p=np.random.permutation(n)
   return a[p],b[p]
 
+def randomParams(dims):
+  means=20*np.random.rand(dims)-10*np.ones(2)
+  cov=np.random.random((dims,dims))
+  cov=np.dot(cov,cov.T)
+  return means,cov
+
+
 parser=argparse.ArgumentParser()
 parser.add_argument("filename")
 args=parser.parse_args()
@@ -26,15 +33,12 @@ N=25
 means=[]
 covs=[]
 Ns=[]
-means.append([-2,2])
-covs.append([[.25,0],[0,.75]])
-Ns.append(N)
-means.append([2,2])
-covs.append([[.75,0],[0,.75]])
-Ns.append(N)
-means.append([-2,-2])
-covs.append([[.75,0],[0,.75]])
-Ns.append(N)
+for i in range(10):
+  mean,cov=randomParams(2)
+  print(mean,cov)
+  means.append(mean)
+  covs.append(cov)
+  Ns.append(N)
 
 data=np.zeros((sum(Ns),len(means[0])))
 targets=np.zeros(sum(Ns),dtype=int)
