@@ -4,6 +4,7 @@ import numpy as np
 import h5py
 import argparse
 from math import pow,sqrt
+from mpi4py import MPI
 
 alpha=.01
 
@@ -41,6 +42,8 @@ parser.add_argument("numFeats",type=int)
 args=parser.parse_args()
 filename=args.filename
 k=args.numFeats
+
+
 
 with h5py.File(filename,'r') as f:
   data=f['ratings'][:]
