@@ -1,0 +1,13 @@
+new	Notes	NotesLink	Exercise	ExerciseLink	Reading	ReadingLink	Assignment	AssignmentLink	AssignmentDue
+x	Introduction to Data and Python Tools		Loading and graphing data		MML chapter 2 through 2.2.3, skipping 2.1		MML 2.4 (pts 1,2 by hand, pts 3-5 in Python)		1 15
+									
+x	Mathematical Foundations: Linear Algebra								
+x	Unsupervised Learning: K-Means Clustering						K-Means Clustering	assignments/kmeans.html	1 22
+x	Unsupervised Learning: Matrix Completion with Nearest-Neighbor						Recommendations from Nearest-Neighbor		
+x	Understanding Your Data: Rank and Basis								
+x	Dimensionality Reduction with PCA								
+x	Unsupervised Learning: The SVD								
+x	Unsupervised Learning: Matrix Completion with the SVD and SGD						Recommendations from Low-Rank Factorization		
+x	Classification/Perceptron								
+x	Feature Design								
+x	Linear Regression								
