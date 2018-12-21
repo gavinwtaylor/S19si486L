@@ -10,10 +10,7 @@ import csv
 calendar=[]
 activeAss=[]
 today=datetime.now()
-#today=datetime(2019,1,12,hour=7)
-
-headings=['Notes','NotesLink','Exercise','ExerciseLink','Reading','ReadingLink',\
-    'Assignment','AssignmentLink','AssignmentDue']
+today=datetime(2019,1,18,hour=7)
 
 def date2str(date):
   return date.strftime("%a, %b ")+str(date.day)
@@ -120,46 +117,49 @@ def closestNotOver(meetings):
       highlight=meeting
   return highlight
 
-def hellinacell(key,keylink,dayInfo,meeting,dueKey=None):
-  if today>=meeting and keylink in dayInfo\
-      and dayInfo[keylink] is not "":
-    calendar.append("<a href=\""+dayInfo[keylink]+"\">"+dayInfo[key]+"</a>")
-  else:
-    calendar.append(dayInfo[key])
-  if dueKey is not None and dueKey in dayInfo and dayInfo[dueKey] is not "":
-    if dayInfo[dueKey]>=today and meeting <= today:
-      calendar.append(" due <b>"+date2str(dayInfo[dueKey])+" </b>")
-      if dayInfo[keylink] is not "":
-        activeAss.append("<li><a href=\""+dayInfo[keylink]+"\">"+dayInfo[key]\
-            +"</a>"+" due "+date2str(dayInfo[dueKey])+"</li>")
-      else:
-        activeAss.append("<li>"+dayInfo[key]+" due "\
-            +date2str(dayInfo[dueKey])+"</li>")
-    else:
-      calendar.append(" due "+date2str(dayInfo[dueKey]))
-
-def aCell(key,keylink,dayInfos,meeting,dueKey=None):
-  calendar.append("<td>")
-  if len(dayInfos)>0:
-    dayInfo=dayInfos[0]
-    hellinacell(key,keylink,dayInfo,meeting,dueKey)
-    for i in range(1,len(dayInfos)):
-      dayInfo=dayInfos[i]
-      if dayInfo[key] is not "":
-        calendar.append("<br /><br />")
-        hellinacell(key,keylink,dayInfo,meeting,dueKey)
-  calendar.append("</td>")
-
 def printRow(dayInfos,meeting,isHighlight=False):
-  rowText=[]
-  activeAss=[]
   if isHighlight:
     calendar.append("<tr class=\"spaceUnder today\">")
   else:
     calendar.append("<tr class=\"spaceUnder\">")
   calendar.append("<td>"+date2str(meeting)+"</td>")
 
-
+  for col in ['Notes','Exercise','Reading']:
+    first=True
+    calendar.append("<td>")
+    for info in dayInfos:
+      if not first:
+        calendar.append("<br /><br />")
+      if meeting<today and col in info and col+'Link' in info\
+        and info[col+'Link'] is not None\
+        and len(info[col+'Link'])>1:
+        calendar.append("<a href=\""\
+            +info[col+'Link']+"\">"+info[col]+"</a>")
+      elif col in info:
+        calendar.append(info[col])
+      first=False
+    calendar.append("</td>")
+  
+  first=True
+  calendar.append("<td>")
+  for info in dayInfos:
+    if not first:
+      calendar.append("<br /><br />")
+    if meeting<today and 'Assignment' in info and 'AssignmentLink' in info\
+        and info['AssignmentLink'] is not None\
+        and len(info['AssignmentLink'])>1:
+      calendar.append("<a href=\""\
+          +info['AssignmentLink']+"\">"+info['Assignment']+"</a>")
+    elif col in info:
+      calendar.append(info['Assignment'])
+    first=False
+    if 'AssignmentDue' in info and info['AssignmentDue'] is not ""\
+        and info['AssignmentDue'] is not None:
+      calendar.append(" due "+date2str(info['AssignmentDue']))
+      if today>meeting and info['AssignmentDue']<today:
+        activeAss.append("<li>"+info['Assignment']+" due "\
+            +date2str(info['AssignmentDue'])+"</li>")
+  calendar.append("</td>")
 
 
 def buildCalendar(meetings,holidays,others):
@@ -168,10 +168,10 @@ def buildCalendar(meetings,holidays,others):
   with open('cal.csv') as csvfile:
     read=csv.DictReader(csvfile,delimiter='\t')
     for row in read:
-      if 'AssDue' in row and row['AssDue'] is not "" and row['AssDue'] is not None:
-        m=int(row['AssDue'].split()[0])
-        d=int(row['AssDue'].split()[1])
-        row['AssDue']=datetime(meetings[0].year,m,d,hour=6)
+      if 'AssignmentDue' in row and row['AssignmentDue'] is not "" and row['AssignmentDue'] is not None:
+        m=int(row['AssignmentDue'].split()[0])
+        d=int(row['AssignmentDue'].split()[1])
+        row['AssignmentDue']=datetime(meetings[0].year,m,d,hour=6)
       info.append(row)
   calendar.append("<table width=100% >")
   calendar.append("<tr class=\"spaceUnder\">")
@@ -182,54 +182,27 @@ def buildCalendar(meetings,holidays,others):
   oths=deque(sorted(others))
   highlight=closestNotOver(meetings)
   blank=dict()
-  for head in info[0].keys():
-    blank[head]=None
   for meeting in meetings:
     while len(hols)>0 and hols[0]<meeting:
       key=hols.popleft()
       blank['Notes']=holidays[key]
       printRow([blank],key)
-      blank['Notes']=None
-      #calendar.append("<tr class=\"spaceUnder\"><td><s>"+date2str(key)\
-          #+"</s></td>")
-      #calendar.append("<td><b>"+holidays[key]\
-          #+"</b></td><td></td><td></td><td></td></tr>")
     while len(oths)>0 and oths[0]<meeting:
       key=oths.popleft()
       blank['Notes']=others[key]
       printRow([blank],key)
-      blank['Notes']=None
-      #calendar.append("<tr class=\"spaceUnder\"><td>"+date2str(key)\
-          #+"</td>")
-      #calendar.append("<td>"+others[key]\
-          #+"</td><td></td><td></td><td></td></tr>")
-    '''
     dayInfos=deque()
     if len(info)>0:
       dayInfos.append(info.popleft())
       while len(info)>0 and info[0]['new'] is "":
         dayInfos.append(info.popleft())
     else:
-      dayInfos.append({"Notes":"","Ass":"","Reading":"","Exercise":""})
-    if meeting is highlight:
-      calendar.append("<tr class=\"spaceUnder today\">")
-      if meeting<today:
-        for di in dayInfos:
-          if di["Reading"] is not "":
-            activeAss.append("<li>Read "+di["Reading"]+"</li>")
-    else:
-      calendar.append("<tr class=\"spaceUnder\">")
-    calendar.append("<td>"+date2str(meeting)+"</td>")
-    aCell('Notes','NotesLink',dayInfos,meeting)
-    aCell('Exercise','ExerciseLink',dayInfos,meeting)
-    aCell('Reading','',dayInfos,meeting)
-    aCell('Ass','AssLink',dayInfos,meeting,dueKey='AssDue')
-    calendar.append("</tr>")
+      dayInfos.append(dict())
+    printRow(dayInfos,meeting,(meeting is highlight))
   for other in oths:
     calendar.append("<tr class=\"spaceUnder\"><td>"+date2str(other)\
         +"</td><td>"+others[other]+"</td><td></td><td></td></tr>")
   calendar.append("</table>")
-  '''
 
 def bottomPart():
   print("</div>")#close main
