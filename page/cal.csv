@@ -3,9 +3,9 @@ x	Introduction to Data and Python Tools		Loading and graphing data		MML chapter 
 								
 x	Mathematical Foundations: Linear Algebra							
 x	Unsupervised Learning: K-Means Clustering					K-Means Clustering	assignments/kmeans.html	1 22
-x	Unsupervised Learning: Matrix Completion with Nearest-Neighbor							
+x	Unsupervised Learning: Matrix Completion with Nearest-Neighbor					Recommendations from Nearest-Neighbor		
 x	Understanding Your Data: Rank and Basis							
 x	Dimensionality Reduction with PCA							
 x	Unsupervised Learning: The SVD							
-x	Unsupervised Learning: Matrix Completion with the SVD and SGD							
+x	Unsupervised Learning: Matrix Completion with the SVD and SGD					Recommendations from Low-Rank Factorization		
 x	Classification/Perceptron							
