@@ -135,7 +135,7 @@ def printRow(dayInfos,meeting,isHighlight=False):
         and len(info[col+'Link'])>1:
         calendar.append("<a href=\""\
             +info[col+'Link']+"\">"+info[col]+"</a>")
-      elif col in info:
+      elif col in info and info[col] is not "" and info[col] is not None:
         calendar.append(info[col])
       first=False
     calendar.append("</td>")
