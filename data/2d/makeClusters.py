@@ -4,19 +4,24 @@ import numpy as np
 import h5py
 import argparse
 
+'''
+Actually generate the data with the given mean and covariance
+'''
 def makeData(mean,cov,n):
   newdata=np.random.multivariate_normal(mean,cov,size=n)
-  if dataTarget:
-    (data,target)=dataTarget
-    newTarget=np.ones(n)
-    return np.concatenate((data,newdata))
   return newdata
 
+'''
+Shuffle the data and targets the same way, so they stay aligned
+'''
 def unisonShuffle(a,b):
   n=a.shape[0]
   p=np.random.permutation(n)
   return a[p],b[p]
 
+'''
+Make a random mean and covariance
+'''
 def randomParams(dims):
   means=20*np.random.rand(dims)-10*np.ones(2)
   cov=np.random.random((dims,dims))
@@ -29,13 +34,12 @@ parser.add_argument("filename")
 args=parser.parse_args()
 filename=args.filename
 
-N=25
+N=25 #hardcoded... gross
 means=[]
 covs=[]
 Ns=[]
-for i in range(10):
+for i in range(10): #10 clusters... again, gross
   mean,cov=randomParams(2)
-  print(mean,cov)
   means.append(mean)
   covs.append(cov)
   Ns.append(N)
@@ -50,6 +54,9 @@ for i in range(len(Ns)):
 
 (data,targets)=unisonShuffle(data,targets)
 
+'''
+store the data into an HDF5 file
+'''
 with h5py.File(filename,'w') as f:
   dset=f.create_dataset('data',data.shape,data.dtype)
   dset[:]=data[:]

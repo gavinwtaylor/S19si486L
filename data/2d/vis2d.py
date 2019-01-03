@@ -11,8 +11,12 @@ parser.add_argument("--onecolor",action="store_true")
 args=parser.parse_args()
 filename=args.filename
 
+'''
+Load the data from the HDF5 file
+'''
 with h5py.File(filename,'r') as f:
-  data=f['data'][:]
+  data=f['data'][:] #f['data'] doesn't actually load the data - f['data'][:]
+                    #does
   targets=f['targets'][:]
 
 if args.onecolor:
