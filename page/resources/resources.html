@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" type="text/css"
+                         href="https://www.usna.edu/Users/cs/taylor/courses/si486l/class.css"
+                         />
+</head>
+<body>
+<div class="navbar">
+  <b><a href="https://www.usna.edu/Users/cs/taylor/courses/si486l">SI486L:
+      Machine Learning and Data Science</a></b>
+  <a href="https://www.usna.edu/Users/cs/taylor/">Dr. Taylor</a>
+  <a
+    href="https://www.usna.edu/Users/cs/taylor/courses/si486l/course_policy.pdf">Policy</a>
+  <a
+    href="https://www.usna.edu/Users/cs/taylor/courses/si486l/resources/resources.html">Resources</a>
+</div>
+<div class="main">
+<h1 id="resources">Resources</h1>
+<h3 id="books">Books</h3>
+<ul>
+<li>(LFD) Abu-Mostafa, Magdon-Ismail, and Lin. <strong>Learning From Data</strong>.</li>
+<li>(ISL) <a href="JWHT.pdf">James, Witten, Hastie, and Tibshirani. <strong>An Introduction to Statistical Learning</strong></a>. (generously provided for free by the authors)</li>
+<li>(ESL) <a href="ESL.pdf">Hastie, Tibshirani, and Friedman. <strong>The Elements of Statistical Learning</strong></a>. (generously provided for free by the authors)</li>
+<li>(MML) <a href="https://mml-book.github.io/">Deisenroth, Faisal, and Ong. <strong>Mathematics for Machine Learning</strong></a>. (generously provided for free by the authors)</li>
+</ul>
+<h3 id="software-libraries">Software Libraries</h3>
+<ul>
+<li><a href="http://www.numpy.org/">Numpy</a>: linear algebra</li>
+<li><a href="http://scipy.github.io/devdocs/">Scipy</a>: algorithms and data structures for scientific computing</li>
+<li><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html">Matplotlib</a>: for making plots and graphs</li>
+<li><a href="https://www.h5py.org/">HDF5 for Python</a>: high-density data storage format</li>
+<li><a href="https://docs.python.org/3/howto/argparse.html">argparse</a>: handles command-line arguments cleaner than sys.argv</li>
+</ul>
+<h3 id="setting-up-a-python-virtual-environment">Setting up a Python Virtual Environment</h3>
+<p>Virtual environments are useful for setting up your Python libraries without impacting the whole system's Python installation (or when you don't have root access). To build an environment for Python 3 and install some libraries, run the following commands from the home directory:</p>
+<pre><code>python3 -m virtualenv &lt;someName&gt;
+source &lt;someName&gt;/bin/activate
+pip install numpy scipy h5py matplotlib</code></pre>
+<p>While the virtual environment is active, all calls to python, pip, etc. will be handled by the installation set up for that virtual environment. To leave it, run <code>deactivate</code>. You'll probably want an alias set up to activate your favorite virtual environment.</p>
+</body>
+</html>
