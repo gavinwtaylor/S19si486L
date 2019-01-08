@@ -1,0 +1,34 @@
+1:Faculty,0:Student
+1:Male,0:Female
+Broccoli
+Mushrooms
+Beef Tacos
+Salads
+Black Licorice
+Steak
+Grilled Chicken
+Mayonnaise
+Candy Corn
+Pulled Pork
+Spicy Mustard
+Raw Oysters
+Bananas
+Avocado
+Eggs
+Olives
+Tofu
+Cottage Cheese
+Black Panther
+Pitch Perfect
+Star Wars: The Last Jedi
+It
+The Big Sick
+Lady Bird
+Pirates of the Caribbean
+Despicable Me
+Beauty and the Beast
+The Purge
+Mamma Mia
+Crazy Rich Asians
+Girls Trip
+The Incredibles
