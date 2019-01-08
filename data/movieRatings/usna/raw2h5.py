@@ -22,4 +22,8 @@ with open('usnaRaw.csv') as csvfile:
       if line[i] is not '':
         data[row][i-1]=int(line[i])
     row=row+1
+data=data[0:row,:]
 
+with h5py.File('usna.h5') as f:
+  ratingsSet=f.create_dataset('ratings',data.shape,data.dtype)
+  ratingsSet[:]=data[:]

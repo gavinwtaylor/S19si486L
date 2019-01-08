@@ -51,6 +51,6 @@ directory=args.directory
 movies,movieMap=parseMovies(directory)
 ratings=parseRatings(directory,movieMap)
 
-with h5py.File(directory+'.h5') as f:
+with h5py.File(directory+'/'+directory+'.h5') as f:
   ratingsSet=f.create_dataset('ratings',ratings.shape,ratings.dtype)
   ratingsSet[:]=ratings[:]
