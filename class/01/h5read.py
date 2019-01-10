@@ -2,8 +2,14 @@
 
 import h5py
 import numpy as np
+import argparse
 
-with h5py.File('~/si486l/data/2d/sep3.h5') as f:
+parser=argparse.ArgumentParser()
+parser.add_argument("filename")
+args=parser.parse_args()
+filename=args.filename
+
+with h5py.File(filename) as f:
   for dataset in f:
     print(dataset)
     #print(f[dataset])
