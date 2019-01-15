@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 print("Displaying a cubic y=Ax^3+Bx^2+Cx+D")
 
 coeffs=np.zeros((4,1))
-coeffs[0]=float(input("A?"))
-coeffs[1]=float(input("B?"))
-coeffs[2]=float(input("C?"))
-coeffs[3]=float(input("D?"))
+coeffs[0]=float(input("A? "))
+coeffs[1]=float(input("B? "))
+coeffs[2]=float(input("C? "))
+coeffs[3]=float(input("D? "))
 
 xs=np.linspace(-10,10,100)#get 100 points, evenly spaced between -10 and 10
 
