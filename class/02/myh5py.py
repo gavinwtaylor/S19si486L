@@ -22,7 +22,7 @@ print(100*sum(ratings[:,1]==0)/n,'percent were female')
 
 foods=ratings[:,2:20]
 _,fk=foods.shape
-movies=ratings[:,21:]
+movies=ratings[:,20:]
 _,mk=movies.shape
 
 print(100*np.sum(foods>0)/(n*fk),'percent of foods were rated')
