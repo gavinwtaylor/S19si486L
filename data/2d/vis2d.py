@@ -17,9 +17,10 @@ Load the data from the HDF5 file
 with h5py.File(filename,'r') as f:
   data=f['data'][:] #f['data'] doesn't actually load the data - f['data'][:]
                     #does
-  targets=f['targets'][:]
+  if 'targets' in f:
+    targets=f['targets'][:]
 
-if args.onecolor:
+if args.onecolor or 'targets' not in f:
   plt.plot(data[:,0],data[:,1],'.')
 else:
   for row in range(len(data)):
