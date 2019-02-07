@@ -19,7 +19,8 @@ theArray=np.random.random((3,))
 theArray=comm.gather(theArray,root=0)
 print("Rank %d has array %s" % (rank,str(theArray)))
 
-#Do a whole lot of work, get some accuracy
+#Pretend we've just done a whole lot of work, and have calculated 
+#some accuracy
 accuracy=np.random.random((1,))
 print("Rank %d has accuracy %s" % (rank,str(accuracy)))
 if rank==0:
