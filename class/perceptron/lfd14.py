@@ -75,23 +75,27 @@ filename=parser.parse_args().filename
 comm=MPI.COMM_WORLD
 rank=comm.Get_rank()
 size=comm.Get_size()
-Ns=[10*x for x in range(1,101)]
-ds=[x for x in range(2,21)]
+Ns=[10*x for x in range(1,101)] #all values of N
+ds=[x for x in range(2,21)] #all values of d
 
 if rank==0:
-  Nds=[(N,d) for d in ds for N in Ns]
-  scat=[[] for i in range(size)]
+  Nds=[(N,d) for d in ds for N in Ns] #(N,d) for all pairs of N and d
+  scat=[[] for i in range(size)] #list of lists, one for each MPI process
   for i in range(len(Nds)):
-    scat[i%size].append(Nds[i])
+    scat[i%size].append(Nds[i]) #populate the lists with (N,d) pairs, so
+                                #each list has about the same number of pairs
   Nds=scat
 else:
   Nds=None
-Nds=comm.scatter(Nds,root=0)
+Nds=comm.scatter(Nds,root=0) #distribute those lists to their appropriate process. Nds[0] goes to rank 0, Nds[1] goes to rank 1, etc.
 results=[]
-for Nd in Nds:
+for Nd in Nds: #for this process's N,d pairs,
   N,d=Nd
-  results.append((N,d,getAvg(N,d)))
+  results.append((N,d,getAvg(N,d))) #calculate the average number of iterations, and store to a tuple, (N,d,iterations)
 
-results=comm.gather(results,root=0)
+#at this point, every process has a list 'results' which contains the
+#(N,d,iterations) tuple for its assigned set of N,d pairs. They all need
+#to be gathered into one place
+results=comm.gather(results,root=0) #this sends them all to the rank 0 process
 if rank==0:
-  saveResults(Ns,ds,results,filename)
+  saveResults(Ns,ds,results,filename) #store them all as an array
