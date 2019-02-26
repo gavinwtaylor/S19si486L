@@ -25,7 +25,7 @@ Generate N 3d datapoints, plus noise
 '''
 def genData2d(N,noise=1):
   line=np.random.randn(3) #random A,B for Ax_1+Bx_2+C=y
-  xs=np.random.random((N,2))*20-10 #random points (-10,10) and (10,10)
+  xs=np.random.random((N,2))*20-10 #random points (-10,-10) and (10,10)
 
   #for each of those points, calculate x,and 1
   data=np.asarray( [[x[0],x[1],1] for x in xs] )
