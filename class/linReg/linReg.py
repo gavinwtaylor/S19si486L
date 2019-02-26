@@ -47,9 +47,11 @@ def plotItLin(xs,ys,w):
 '''
 Fancy-shmancy drawing of points and plane of best fit in x,x^2 space
 '''
-def plot3D(xs,ys,w=None):
+def plot3D(data,ys,w=None):
   fig=plt.figure()
   ax=Axes3D(fig)
+  ax.set_xlim(-10,10)
+  ax.set_ylim(-10,10)
   if w is not None:
     X1=np.arange(-10,10)
     X2=np.arange(-10,10)
@@ -94,8 +96,8 @@ w=linReg(data,ys)
 plotItLin(xs,ys,w)
 
 xs,ys=genData2d(N,noise=noise)
-plot3D(xs,ys)
 data=np.ones((N,3))
 data[:,:2]=xs
+plot3D(data,ys)
 w=linReg(data,ys)
-plot3D(xs,ys,w)
+plot3D(data,ys,w)
