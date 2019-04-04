@@ -20,13 +20,13 @@ model.add(layers.Dense(64, activation='relu'))
 # Add another:
 model.add(layers.Dense(64, activation='relu'))
 # Add a softmax layer with 10 output units:
-model.add(layers.Dense(10, activation='softmax'))
+model.add(layers.Dense(1, activation='tanh'))
 
 model.compile(optimizer=tf.train.AdamOptimizer(0.001),
     loss='mse', metrics=['accuracy'])
 
 data = np.random.random((1000, 32))
-labels = np.random.random((1000, 10))
+labels = np.random.randint(0,2,size=(1000,))
 
 class AccuracyHistory(keras.callbacks.Callback):
   def on_train_begin(self, logs={}):
